@@ -6,8 +6,6 @@ Golang API for Cex.io
 Example
 -------
 
-..code:
-
     package main
 
     import (
