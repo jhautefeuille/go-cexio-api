@@ -15,9 +15,9 @@ Example
 
     func main() {
         cexapi := cexio.CexKey{
-            Username:"joss", 
-            Api_key:"3DS9BfiJKil48lvEOVXxk68lqfw", 
-            Api_secret:"BHQvqWEZuGZ6ifCC44DXpoEkz58"}
+            Username:"your_username", 
+            Api_key:"your_api_key", 
+            Api_secret:"your_api_secret"}
 
         // Public
         fmt.Printf("Ticker => %s\n", cexapi.Ticker("GHS/BTC"))
