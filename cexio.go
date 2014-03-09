@@ -7,7 +7,6 @@
 package cexio
 
 import (
-    "fmt"
     "net/http"
     "net/url"
     "io/ioutil"
