@@ -6,7 +6,7 @@ Golang API for Cex.io
 Example
 -------
 
-..code::
+..code:
 
     package main
 
