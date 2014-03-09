@@ -20,9 +20,9 @@ import (
 )
 
 type CexKey struct {
-    username string
-    api_key string
-    api_secret string
+    Username string
+    Api_key string
+    Api_secret string
 }
 
 func (cexapi CexKey) Nonce() string {
@@ -38,8 +38,8 @@ func (cexapi CexKey) ToHmac256(message string, secret string) string {
 
 func (cexapi CexKey) Signature() (string, string) {
     nonce := cexapi.Nonce()
-    message := nonce + cexapi.username + cexapi.api_key
-    signature := cexapi.ToHmac256(message, cexapi.api_secret)
+    message := nonce + cexapi.Username + cexapi.Api_key
+    signature := cexapi.ToHmac256(message, cexapi.Api_secret)
     return signature, nonce
 }
 
@@ -72,7 +72,7 @@ func (cexapi CexKey) ApiCall(method string, id string, param map[string]string, 
         // Post method for private method
         signature, nonce := cexapi.Signature()
         v := url.Values{}
-        v.Set("key", cexapi.api_key)
+        v.Set("key", cexapi.Api_key)
         v.Add("signature", signature)
         v.Add("nonce", nonce)
         // Place order param
