@@ -1,7 +1,7 @@
 go-cexio-api
 ============
 
-Golang API for Cex.io Bitcoin Commodity Exchange
+Golang API for Cex.io Bitcoin Commodity Exchange.
 
 Example
 -------
