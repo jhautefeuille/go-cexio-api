@@ -1,8 +1,9 @@
 // Golang API for cex.io trading
 // Author: julien@hautefeuille.eu
-// BTC: 1Q2BDvd5zWW8znK7cBdaRTA9hBSLJJZzoy
+// Contributor : Aleksandr Shepelev (https://github.com/AleksandrShepelev)
 // Date: 09/03/2014
-// Version: 0.3
+// Update: 12/04/2018
+// Version: 0.4
 
 package cexio
 
