@@ -77,9 +77,16 @@ func (cexapi *CexKey) ApiCall(method string, id string, param map[string]string,
         v.Add("nonce", nonce)
         // Place order param
         if len(param) != 0 {
-            v.Add("type", param["ordertype"])
-            v.Add("amount", param["amount"])
-            v.Add("price", param["price"])
+        	if param["ordertype"] == "market" {
+				v.Add("order_type", param["ordertype"])
+				v.Add("type", param["type"])
+				v.Add("amount", param["amount"])
+			} else if param["ordertype"] == "limit" {
+				v.Add("order_type", param["ordertype"])
+				v.Add("type", param["type"])
+				v.Add("amount", param["amount"])
+				v.Add("price", param["price"])
+			}
         }
         // Cancel order id
         if len(id) != 0 {
@@ -91,7 +98,7 @@ func (cexapi *CexKey) ApiCall(method string, id string, param map[string]string,
             data = cexapi.PostMethod(w, v) // url ghash.io , param
         } else {
             // Cex.io post method
-            data = cexapi.PostMethod(u, v) // url cex.io, param    
+            data = cexapi.PostMethod(u, v) // url cex.io, param
         }
     } else {
         // Get method for public method
@@ -122,11 +129,20 @@ func (cexapi *CexKey) OpenOrders(opt string) []byte {
 }
 
 // Orders functions
-func (cexapi *CexKey) PlaceOrder(ordertype string, amount string, price string, opt string) []byte {
+func (cexapi *CexKey) PlaceLimitOrder(ordertype string, amount string, price string, opt string) []byte {
     var param = map[string]string {
-        "ordertype": ordertype,
+        "ordertype": "limit",
+        "type": ordertype,
         "amount": amount,
         "price" : price}
+    return cexapi.ApiCall("place_order", "", param, true, opt)
+}
+
+func (cexapi *CexKey) PlaceMarketOrder(ordertype string, amount string, opt string) []byte {
+    var param = map[string]string {
+        "ordertype" : "market",
+        "type": ordertype,
+        "amount": amount}
     return cexapi.ApiCall("place_order", "", param, true, opt)
 }
 
